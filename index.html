@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>密码生成器</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f7fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        pre {
+            background-color: #f5f7fa;
+            padding: 10px;
+            margin-top: 20px;
+            border: 1px solid #dcdde1;
+            border-radius: 5px;
+            white-space: pre-line;  /* ensure the newlines display correctly */
+            font-size: 2em; /* Set font-size to 2 times the default */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>随机密码生成器</h1>
+        <button onclick="generatePasswords()">生成密码</button>
+        <pre id="passwordDisplay"></pre>
+    </div>
+
+    <script>
+        function generatePassword() {
+            const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+            const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const numberChars    = '012345678901234567890123456789';
+            const specialChars   = '!@#$%^&*()-_=+[]{}|;:,.<>?';
+            const allChars = lowercaseChars + uppercaseChars + numberChars + specialChars;
+
+            let password = '';
+            const passwordLength = 8;
+
+            let randomIndex = 0;
+
+            // ensure password contains at least one character from each group
+            randomIndex = Math.floor(Math.random() * lowercaseChars.length);
+            password += lowercaseChars[randomIndex];
+
+            randomIndex = Math.floor(Math.random() * uppercaseChars.length);
+            password += uppercaseChars[randomIndex];
+            
+            randomIndex = Math.floor(Math.random() * numberChars.length);
+            password += numberChars[randomIndex];
+
+            randomIndex = Math.floor(Math.random() * specialChars.length);
+            password += specialChars[randomIndex];
+
+            // generating rest of the password
+            for (let i = 0; i < passwordLength; i++) {
+                randomIndex = Math.floor(Math.random() * allChars.length);
+                password += allChars[randomIndex];
+            }
+
+            // shuffle the password
+            let shuffled_password = password.split('').sort(function(){return 0.5-Math.random()}).join('');
+
+            return shuffled_password;
+        }
+
+        function generatePasswords() {
+            let passwords = "";
+            for (let i = 0; i < 5; i++) {
+                passwords += generatePassword() + "\n";
+            }
+            document.getElementById('passwordDisplay').textContent = passwords;
+        }
+    </script>
+</body>
+
+</html>
