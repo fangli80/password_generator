@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>密码生成器</title>
+    <title>随机密码生成器</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700&family=Roboto+Mono&display=swap');
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Dengxian', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
             background-color: #f5f7fa;
             display: flex;
             align-items: center;
@@ -21,11 +22,11 @@
             border-radius: 10px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 350px;
+            width: 360px;
         }
 
         button {
-            background-color: #3498db;
+            background-color: #8fdb9b;
             color: #ffffff;
             border: none;
             padding: 10px 15px;
@@ -33,10 +34,11 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.2s ease;
+            font-size: 1.3em; 
         }
 
         button:hover {
-            background-color: #2980b9;
+            background-color: #32c56a;
         }
 
         pre {
@@ -46,16 +48,28 @@
             border: 1px solid #dcdde1;
             border-radius: 5px;
             white-space: pre-line;  /* ensure the newlines display correctly */
-            font-size: 2em; /* Set font-size to 2 times the default */
+            font-family:'Roboto Mono', monospace;
+            font-size: 1.5em; 
         }
     </style>
 </head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F0PRGC3X8M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F0PRGC3X8M');
+</script>
 
 <body>
     <div class="container">
         <h1>随机密码生成器</h1>
         <button onclick="generatePasswords()">生成密码</button>
         <pre id="passwordDisplay"></pre>
+        <span>密码由JavaScript在本地生成，服务器端不保存密码</span>
     </div>
 
     <script>
